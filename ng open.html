@@ -1,0 +1,62 @@
+ <!doctype html>
+<html>
+    <head>
+        <style> 
+               h3{
+                   font-family: sans-serif;
+                   color: darkblue;
+                   background-color: cyan;
+               }
+               ul{
+                   font-family:serif;
+                   background-color: chocolate; 
+               }
+        </style>
+    <script src="scripts/angular.js"></script>
+    </head>
+    <body ng-app>
+        
+           <table width="800" border="10" align="center" cellspacing="10" cellpadding="50">
+              
+               <tr height="300">
+                   <td width="200">
+                       <h3>Table of centests</h3>
+                       <ul>
+                           <li><input ng-model="all" type="checkbox">All</li>
+                           <li><input ng-model="js" type="checkbox" ng-checked="all">JavaScript</li>
+                           <li><input ng-model="ng" type="checkbox" ng-checked="all">Angular JS</li>
+                       </ul>
+                   </td>
+                   <td width="600">
+                       <details ng-open="js">
+                           <summary>Javascript</summary>
+                           <ol>
+                               <li>Variable<textarea rows="1" cols="10" ng-init="description=''"
+                                                                        ng-cut="description='Removed and placed on clipboard'"
+                                                                        ng-copy="description='Copied to clipboard'"
+                                                                        ng-paste="description='Inserted from clipboard'"></textarea><span>{{description}}</span></li>
+                               <li>Operator<textarea rows="1" cols="10" ng-init="description=''"
+                                                                        ng-cut="description='Removed and placed on clipboard'"
+                                                                        ng-copy="description='Copied to clipboard'"
+                                                                        ng-paste="description='Inserted from clipboard'"></textarea></li>
+                               <li>Datatypes<textarea rows="1" cols="10" ng-init="description=''"
+                                                                         ng-cut="description='Removed and placed on clipboard'"
+                                                                         ng-copy="description='Copied to clipboard'"
+                                                                         ng-paste="description='Inserted from clipboard'"></textarea></li></li>
+                           </ol>
+                       </details>
+                       <details ng-open="ng" ng-checked="all">
+                           <summary>Angular Js</summary>
+                           <ol>
+                               <li>Directives</li>
+                               <li>Modules</li>
+                               <li>controllers</li>
+                           </ol>
+                       </details>
+
+                   </td>
+               </tr>
+
+           </table>
+    </body>
+</html>
