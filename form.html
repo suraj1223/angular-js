@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+        <script src="scripts/angular.js"></script>
+        <script>
+            var app=angular.module("DemoApp",[]);
+            app.controller("HomeController",function($scope){
+                $scope.isDetailsVisible=false;
+                $scope.isRegisterVisible=true;
+
+                $scope.submitClick=function(){
+                    $scope.isDetailsVisible=true;
+                    $scope.isRegisterVisible=false;
+
+                }
+            });
+        </script>
+    </head>
+    <body ng-app="DemoApp" ng-controller="HomeController">
+        <div class="container">
+            <form ng-show="isRegisterVisible">
+                <h2>Register Product</h2>
+                <div class="form-group">
+                    <label>Name</label>
+                <div>
+                    <input type="text" ng-model="txtName" class="form-control">
+                </div>
+                </div>
+                <div class="form-group">
+                    <label>Price</label>
+                    <div>
+                        <input type="text" ng-model="txtPrice" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Shipped to</label>
+                    <div>
+                        <select ng-model="lstCity" class="form-control">
+                            <option>Pune</option>
+                            <option>Mumbai</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Manufactured</label>
+                    <div>
+                        <input type="date" ng-model="txtMfd" class="form-control">
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Is In Stock</label>
+                    <div>
+                        <input type="checkbox" ng-model="Instock" class="form-check">Yes
+                    </div>
+                </div>
+                <div class="form-group">
+                    <button ng-click="submitClick()" class="btn btn-success">Submit Product</button>
+                </div>
+            </form>
+            <div ng-if="isDetailsVisible" class="bg-info text-white">
+            
+            <fieldset>
+                <legend>Product Details</legend>
+                <table class="table table-hover text-blue" >
+                    <tr>
+                        <td>Name</td>
+                        <td ng-bind="txtName"></td>
+                    </tr>
+                    <tr>
+                        <td>Price</td>
+                        <td ng-bind="txtPrice"></td>
+                    </tr>
+                    <tr>
+                        <td>Shipped to</td>
+                        <td ng-bind="lstCity"></td>
+                    </tr>
+                    <tr>
+                        <td>Manufactured</td>
+                        <td>{{txtMfd}}</td>
+                    </tr>
+                    <tr>
+                        <td>Is In Stock</td>
+                        <td>{{(Instock==true)?"Available":"Out Of Stock"}}</td>
+                    </tr>
+                </table>
+            </fieldset>
+            <div align="center">
+                <a class="btn text-white" href="form.html">Back</a>
+             </div>
+            </div>
+        </div>
+    </body>
+</html>
