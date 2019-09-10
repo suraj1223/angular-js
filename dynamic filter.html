@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <link rel="styleeshit" href="node_modules/bootstrap/dist/css/bootstrap.css">
+        <script src="scripts/angular.js"></script>
+         <script> 
+           var app=angular.module("DemoApp",[]);
+           app.controller("HomeController",function($scope){
+               $scope.products=[
+                   {Id:1,Name:"Samsung TV",Price:45000,photo:"images/tv.jpg"},
+                   {Id:2,Name:"Nike shoe",Price:4500,photo:"images/shoe.jpg"},
+                   {Id:3,Name:"wash machine",Price:19000,photo:"images/wash machine.jpg"},
+                   {Id:4,Name:"mobile",Price:15500,photo:"images/mobile.jpg"},
+                   {Id:5,Name:"LeeCooper Shoe",Price:4500,photo:"images/shoe1.jpg"}
+               ]
+           })
+         </script>
+    </head>
+    <body ng-app="DemoApp" ng-controller="HomeController">
+        <div class="container">
+            <h1 class="text-center">Amazon Shopping</h1>
+            <table class="table table-hover" width="1020">
+                <tr>
+                    <td width="200">
+                        <div class="form-group">
+                            <fieldset>
+                                <legend>Filter</legend>
+                                <dl>
+                                    <dt>Search All</dt>
+                                    <dd>
+                                        <input ng-model="searchString.$" type="text" class="form-control">
+                                    </dd>
+                                    <dt>Search By Price</dt>
+                                    <dd>
+                                            <input ng-model="searchString.Price" type="text" class="form-control">
+                                        </dd>
+                                        <dt>Search By Name</dt>
+                                    <dd>
+                                            <input ng-model="searchString.Name" type="text" class="form-control">
+                                        </dd>
+
+                                </dl>
+                            </fieldset>
+                        </div>
+                    </td>
+                    <td width="1020">
+                        <div>
+
+                            <div class="card" ng-repeat="item in products|filter:searchString">
+                                <div class="card-header">
+                                    <h2>{{item.Name}}</h2>
+                                </div>
+                                <div>
+                                    <img src="{{item.photo}}" class="img-thumbnail" width="150" height="150">
+                                </div>
+                                <div>
+                                    <h2>{{item.Price}}</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </body>
+</html>
