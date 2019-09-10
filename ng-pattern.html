@@ -1,0 +1,82 @@
+
+<!DOCTYPE html>
+<html>
+    <head>
+            <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.css">
+            <script src="scripts/angular.js"></script>
+            <script>
+
+
+                var app=angular.module("DemoApp",[]);
+                app.controller("HomeController",function($scope){
+
+                    $scope.regExp="";
+                    $scope.flag="";
+                     $scope.holder="";
+                    $scope.lstCountries="";
+
+                    function SetDetails(holder,flag,regExp){
+                        $scope.holder=holder;
+                        $scope.flag=flag;
+                        $scope.regExp=regExp;
+                    }
+                    $scope.CountryChange=function(){
+                        switch($scope.lstCountries){
+                            case "India":
+                            SetDetails("eg:+91 and 10 digits","images/india.jpg","\\+91[0-9]{10}");
+                            break;
+                            case "US":
+                            SetDetails("eg:+001 and 6 digits","images/us.jpg","\\+001[0-9]{6}");
+                            break; 
+                            case "UK":
+                            SetDetails("eg:+44 and 8 digits","images/uk.png","\\+44[0-9]{8}");
+                            break;
+                            case "Japan":
+                            SetDetails("eg:+81 and 10 digits","images/japan.jpg","\\+81[0-9]{10}");
+                            break;
+                            case "Russia":
+                            SetDetails("eg:+7 and 10 digits","images/russia.jpg","\\+7[0-9]{10}");
+                            break;
+                            case "Brazil":
+                            SetDetails("eg:+55 and 11 digits","images/brazil.jpg","\\+55[0-9]{11}");
+                        
+                        }
+                    };
+                })
+            </script>
+    </head>
+    <body ng-app="DemoApp" ng-controller="HomeController">
+        <div class="container">
+            <form name="frmRegister">
+                <h2>Register Your Mobile</h2>
+                <dl>
+                    <dt>Select Your City</dt>
+                    <dd>
+                        <select class="form-control"
+                                ng-model="lstCountries"
+                                ng-change="CountryChange()">
+                            <option>India</option>
+                            <option>US</option>
+                            <option>UK</option>
+                            <option>Japan</option>
+                            <option>Russia</option>
+                            <option>Brazil</option>
+                        </select>
+                        <br>
+                        <div class="text-center">
+                            <img ng-src="{{flag}}" width="150" height="150">
+                        </div>
+                    </dd>
+                    <dt>Mobile Number</dt>
+                    <dd>
+                        <input placeholder="{{holder}}" ng-pattern="regExp" type="text" name="txtMobile" ng-model="txtMobile" class="form-control">
+                        <span ng-if="frmRegister.txtMobile.$error.pattern">Invalid Mobile</span>
+                    </dd>
+                </dl>
+            </form>
+        </div>
+
+    </body>
+</html>
+
+
